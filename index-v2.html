@@ -20,7 +20,23 @@
       width: 100%; height: 100%;
       z-index: 0;
     }
-    .page { position: relative; z-index: 1; }
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+    .hero,
+    .grid > div,
+    .footer,
+    .section--center > div {
+      background: rgba(5, 6, 10, 0.55);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .footer {
+      background: rgba(5, 6, 10, 0.7);
+      border-radius: 0;
+    }
     .section {
       min-height: 100vh;
       padding: 80px 10vw;
@@ -232,7 +248,7 @@
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -242,7 +258,7 @@
   scene.background = new THREE.Color(0x05060a);
 
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0.6, 3.2);
+  camera.position.set(0, 0.6, 4.6);
   scene.add(camera);
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
@@ -279,7 +295,7 @@
     const orbitMaterial = new THREE.MeshBasicMaterial({
       color: i===0 ? 0x4a6cf7 : 0x7b8bff,
       transparent:true,
-      opacity:0.4
+      opacity:0.22
     });
     const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
     orbit.rotation.x = Math.PI/2.4 + i*0.18;
@@ -316,9 +332,9 @@
   particlesGeometry.setAttribute("position", new THREE.BufferAttribute(positions,3));
   const particlesMaterial = new THREE.PointsMaterial({
     color:0x4b4f70,
-    size:0.025,
+    size:0.018,
     transparent:true,
-    opacity:0.8
+    opacity:0.45
   });
 
   const particles = new THREE.Points(particlesGeometry, particlesMaterial);
